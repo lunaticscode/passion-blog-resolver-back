@@ -11,3 +11,4 @@ app.use("/api", apiController);
 app.listen(PORT, () => {
   console.log(`Express Running on ${PORT}.`);
 });
+// module.exports = app;
