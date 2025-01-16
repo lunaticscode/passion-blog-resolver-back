@@ -34,7 +34,7 @@ keywordController.post("/extract", async (req, res) => {
     const resultData = result["message"]["content"];
 
     let formatData = resultData;
-    console.log(resultData, typeof resultData);
+    // console.log(resultData, typeof resultData);
     if (typeof formatData === "string") {
       formatData = formatData.replace(/```javascript/g, "").replace(/```/g, "");
       formatData = JSON.parse(formatData);
@@ -63,7 +63,7 @@ keywordController.post("/processing-article", async (req, res) => {
     const resultData = result["message"]["content"];
 
     let formatData = resultData;
-    console.log(formatData);
+    // console.log(formatData);
     return res.json({ isError: false, data: formatData });
   } catch (err) {
     console.log(err);
