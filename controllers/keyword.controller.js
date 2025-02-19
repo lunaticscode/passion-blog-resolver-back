@@ -10,7 +10,7 @@ const { GPT_API_KEY } = require("../consts/app");
 
 const keywordController = require("express").Router();
 
-const validPromptTypes = ["keyword", "sentence", "article"];
+const validPromptTypes = ["keyword", "sentence", "article", "keyword2"];
 
 keywordController.post("/extract", async (req, res) => {
   const { article, type } = req.body;
@@ -37,6 +37,7 @@ keywordController.post("/extract", async (req, res) => {
     // console.log(resultData, typeof resultData);
     if (typeof formatData === "string") {
       formatData = formatData.replace(/```javascript/g, "").replace(/```/g, "");
+      // console.log(formatData);
       formatData = JSON.parse(formatData);
     }
     return res.json({ isError: false, data: formatData });
