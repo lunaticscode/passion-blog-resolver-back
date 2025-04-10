@@ -48,11 +48,18 @@ keywordController.post("/extract", async (req, res) => {
 });
 
 keywordController.post("/processing-article", async (req, res) => {
-  const { article } = req.body;
+  const { article, withStructure = false } = req.body;
+  if (!article)
+    return res
+      .status(400)
+      .json({ isError: true, message: "(!) Invalid request body." });
   try {
     const requestResult = await axios.post(
       openAiApiUrl,
-      getBody(MODELS["4.0"], getPromptForProcessingArticle(article)),
+      getBody(
+        MODELS["4.0"],
+        getPromptForProcessingArticle(article, withStructure)
+      ),
       {
         headers: {
           "Content-Type": "application/json",
