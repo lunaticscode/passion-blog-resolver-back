@@ -1,11 +1,14 @@
 const express = require("express");
 const { PORT } = require("./consts/app");
 const cors = require("cors");
-const apiController = require("./controllers");
+const cookieParser = require("cookie-parser");
 const app = express();
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
+
+const apiController = require("./controllers");
 app.use("/api", apiController);
 
 app.listen(PORT, () => {
