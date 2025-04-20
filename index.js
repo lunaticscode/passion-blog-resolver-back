@@ -1,12 +1,20 @@
 const express = require("express");
 const { PORT } = require("./consts/app");
-const cors = require("cors");
+const { rateLimit } = require("express-rate-limit");
+// const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const app = express();
 
+const app = express();
+app.use(
+  rateLimit({
+    windowMs: 10 * 1000,
+    limit: 20,
+  })
+);
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+
+// app.use(cors());
 
 const apiController = require("./controllers");
 app.use("/api", apiController);

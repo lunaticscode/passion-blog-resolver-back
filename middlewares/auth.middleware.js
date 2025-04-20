@@ -20,7 +20,6 @@ const authMiddleware = (req, res, next) => {
       .status(401)
       .json({ isError: true, message: "(!) Invalid access token." });
   }
-
   const { email, picture, name } = decodedToken;
   const resignedToken = getSignedToken({ email, picture, name });
 
